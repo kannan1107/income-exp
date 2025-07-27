@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Income And Expence Details</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
- 
+  <meta charset="UTF-8">
+  <title>Income & Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-  <form action="">
-    <div>Name <input id="name" type="text" placeholder="Enter Name"/></div>
-    <div>phone <input id="phone" type="number" placeholder="Mobile number"/></div>
-    <div>Date <input id="date" type="date" placeholder="Enter Date"/></div>
-    <div>Income <input id="income" type="number" placeholder="Enter Income"/></div>
-    <div>Expance <input id="expance" type="text" placeholder="Enter Expance"/></div>
-    <div>Balance <input id="balance" type="text" placeholder="Enter Name"/></div>
-    <button id="entry" class="save">Save</button>
-<button class="clear" id="clear">clean</button>
-  </form>
+
+<div class="main">
+  <h2>Income & Expense Details</h2>
+
+<form id="entryForm">
+  <input type="text" id="description" placeholder="Description" required>
+
+  <input type="number" id="amount" placeholder="Amount" required>
+  <select id="type">
+    <option value="income">Income</option>
+    <option value="expense">Expense</option>
+  </select>
+  <button type="submit" class="add-data">Add Entry</button>
+</form>
+
+<input type="text" id="search" placeholder="Search by description...">
+<select id="filterType">
+  <option value="all">All</option>
+  <option value="income">Income</option>
+  <option value="expense">Expense</option>
+</select>
+
 
 </div>
 
-  <table id="display" >
-  <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Date</th>
-    <th>Income</th>
-    <th>Expance</th>
-    <th>Balance</th>
-  </tr>
+<h3>Balance: $<span id="balance">0</span></h3>
 
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Date</th> 
+      <th>Amount</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody id="entryList"></tbody>
 </table>
 
+<script src="index.js">
+ 
+</script>
 
-
-
-
-
-
-    
 </body>
-<script src="index.js"></script>
 </html>

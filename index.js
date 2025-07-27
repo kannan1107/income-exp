@@ -1,37 +1,82 @@
+ let entries = [];
+  let editIndex = null;
 
- var row =1;
-var entry  = document.getElementById("entry")
+  const form = document.getElementById('entryForm');
+  const descriptionInput = document.getElementById('description');
+  const amountInput = document.getElementById('amount');
+  const typeInput = document.getElementById('type');
+  const entryList = document.getElementById('entryList');
+  const balanceEl = document.getElementById('balance');
+  const searchInput = document.getElementById('search');
+  const filterType = document.getElementById('filterType');
 
-entry. addEventListener("click", displayData);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const desc = descriptionInput.value.trim();
+    const amt = parseFloat(amountInput.value);
+    const type = typeInput.value;
 
- function displayData(){
-    var name = document.getElementById("name").value;
-    var phone = document.getElementById("phone").value;
-    var date = document.getElementById("date").value;
-    var income = document.getElementById("income").value;
-    var expance = document.getElementById("expance").value;
-    var balance = document.getElementById("balance").value;
+    if (editIndex !== null) {
+      entries[editIndex] = { desc, amt, type };
+      editIndex = null;
+    } else {
+      entries.push({ desc, amt, type });
+    }
 
-    // check condition in all box
-    if(name == "" || phone == "" || date == "" || income == "" || expance == "" || balance == ""){
-        alert("Please fill all the fields");
-        return;
-    } 
+    form.reset();
+    renderEntries();
+  });
 
-    var display = document.getElementById("display");
-    var newRow = display.insertRow(row);    
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);   
-    var cell3 = newRow.insertCell(2);
-    var cell4 = newRow.insertCell(3);
-    var cell5 = newRow.insertCell(4);   
-    var cell6 = newRow.insertCell(5);
-    var cell7 = newRow.insertCell(6);
-    cell1.innerHTML = name;
-    cell2.innerHTML = phone;
-    cell3.innerHTML = date; 
-    cell4.innerHTML = income;
-    cell5.innerHTML = expance;
-    cell6.innerHTML = balance;
-row++;
- }
+  function renderEntries() {
+    const search = searchInput.value.toLowerCase();
+    const filter = filterType.value;
+
+    const filtered = entries.filter(entry => {
+      return (filter === 'all' || entry.type === filter) &&
+             entry.desc.toLowerCase().includes(search);
+    });
+
+    entryList.innerHTML = '';
+    filtered.forEach((entry, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${entry.desc}</td>
+        <td class="${entry.type}">${entry.amt.toFixed(2)}</td>
+        <td>${entry.type}</td>
+        <td>
+          <button onclick="editEntry(${index})">Edit</button>
+          <button onclick="deleteEntry(${index})">Delete</button>
+        </td>
+      `;
+      entryList.appendChild(row);
+    });
+
+    updateBalance();
+  }
+
+  function updateBalance() {
+    let income = 0, expense = 0;
+    for (const e of entries) {
+      if (e.type === 'income') income += e.amt;
+      else expense += e.amt;
+    }
+    balanceEl.textContent = (income - expense).toFixed(2);
+  }
+
+  function editEntry(index) {
+    const entry = entries[index];
+    descriptionInput.value = entry.desc;
+    amountInput.value = entry.amt;
+    typeInput.value = entry.type;
+    editIndex = index;
+  }
+
+  function deleteEntry(index) {
+    entries.splice(index, 1);
+    renderEntries();
+  }
+
+  searchInput.addEventListener('input', renderEntries);
+  filterType.addEventListener('change', renderEntries);
+
+  renderEntries();
