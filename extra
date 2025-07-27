@@ -1,0 +1,138 @@
+let data =[
+    {
+        name: "kannan",
+        phome:123456,
+        data:"2025-01-20",
+        income:10000,
+        expance:7000,
+        balance:3000
+    },
+      {
+        name: "kannan",
+        phome:123456,
+        data:"2025-01-20",
+        income:10000,
+        expance:7000,
+        balance:3000
+    },
+]
+
+console.log(data)
+
+function readAll (){
+    var tbtable= document.querySelector(".table_data")
+var element ="";
+    data.map(d =>(
+        element += '<tr> <td>${d.name}</td><td>${d.phone}</td> <td>${d.date}</td><td>${d.income}</td> <td>${d.expance}</td><td>${d.expance}</td> <td>${d.balance}</td></tr>'
+    ))
+    }
+
+// let customeDatails;
+// document.getElementById("save").onclick =function(){
+
+//     customeDatails = document.getElementById("name").value;
+//      customeDatails = document.getElementById("phone").value;
+//       customeDatails = document.getElementById("date").value;
+//        customeDatails = document.getElementById("expance").value;
+//         customeDatails = document.getElementById("income").value;
+//          customeDatails = document.getElementById("balance").value;
+//     console.log(customeDatails)
+// }
+
+
+
+
+//  function addData() {
+//             // Get input values
+//             let name = document.getElementById("#name").value;
+//             let phone = document.getElementById("#phone").value;
+//             let date = document.getElementById("#date").value;
+//             let income = document.getElementById("#income").value;
+//              let expance = document.getElementById("#expance").value;
+//               let balance = document.getElementById("#balance").value;
+//               console.log(name)
+
+//             // Get the table and insert a new row at the end
+//             let table = document.getElementById("outputTable");
+//             let newRow = table.insertRow(table.rows.length);
+
+//             // Insert data into cells of the new row
+//             newRow.insertCell(0).innerHTML = name;
+//             newRow.insertCell(1).innerHTML = phone;
+//             newRow.insertCell(2).innerHTML = date;
+//             newRow.insertCell(3).innerHTML = expance;
+//                newRow.insertCell(4).innerHTML = income;
+//                   newRow.insertCell(5).innerHTML = balance;
+//             newRow.insertCell(6).innerHTML =
+//                 '<button onclick="editData(this)">Edit</button>' +
+//                 '<button onclick="deleteData(this)">Delete</button>';
+
+//             // Clear input fields
+//             clearInputs();
+//         }
+
+//         function editData(button) {
+
+//             // Get the parent row of the clicked button
+//             let row = button.parentNode.parentNode;
+
+//             // Get the cells within the row
+//             let nameCell = row.cells[0];
+//             let phoneCell = row.cells[1];
+//             let dataCell = row.cells[2];
+//             let incomeCell = row.cells[3];
+//             let expanceCell = row.cells[4];
+//             let balanceCell = row.cells[5];
+
+//             // Prompt the user to enter updated values
+//             let name =
+//                 prompt("Enter the updated name:",
+//                     nameCell.innerHTML);
+//             let phone =
+//                 prompt("Enter the updated email:",
+//                     phoneCell.innerHTML);
+//             let date =
+//                 prompt("Enter the updated mobile details:",
+//                     dateCell.innerHTML
+//                 );
+//             let income =
+//                 prompt("Enter the updated address:",
+//                     incomeCell.innerHTML
+//                 );
+//                  let expance =
+//                 prompt("Enter the updated address:",
+//                     expanceCell.innerHTML
+//                 );
+//                      let balance =
+//                 prompt("Enter the updated address:",
+//                     balanceCell.innerHTML
+//                 );
+
+//             // Update the cell contents with the new values
+//             nameCell.innerHTML = name;
+//             phoneCell.innerHTML = phone;
+//             dateCell.innerHTML = date;
+//             incomeCell.innerHTML = income;
+//             expanceCell.innerHTML = expance;
+//             balanceCell.innerHTML = balance;
+//         }
+
+//         function deleteData(button) {
+
+//             // Get the parent row of the clicked button
+//             let row = button.parentNode.parentNode;
+
+//             // Remove the row from the table
+//             row.parentNode.removeChild(row);
+//         }
+
+//         function clearInputs() {
+
+//             // Clear input fields
+//             document.getElementById("name").value = "";
+//             document.getElementById("phone").value = "";
+//             document.getElementById("date").value = "";
+//             document.getElementById("incame").value = "";
+//             document.getElementById("expance").value = "";
+//             document.getElementById("balance").value = "";
+//         }
